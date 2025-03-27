@@ -9,5 +9,5 @@ WHERE datname = 'reed_log';
 
 DROP DATABASE reed_log;
 
-DROP USER final_capstone_owner;
-DROP USER final_capstone_appuser;
+DROP USER reed_log_owner;
+DROP USER reed_log_appuser;

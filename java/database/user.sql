@@ -13,7 +13,7 @@ GRANT ALL
 ON ALL SEQUENCES IN SCHEMA public
 TO reed_log_owner;
 
-CREATE USER final_capstone_appuser
+CREATE USER reed_log_appuser
 WITH PASSWORD 'reedlog';
 
 GRANT SELECT, INSERT, UPDATE, DELETE
