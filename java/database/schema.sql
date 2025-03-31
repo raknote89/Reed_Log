@@ -1,6 +1,6 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users, cases, reeds, reed_session, user_case, case_reed;
+DROP TABLE IF EXISTS users, cases, reeds, reed_session, user_case, case_reed, weather;
 
 -- Users Table
 CREATE TABLE users (
@@ -52,6 +52,16 @@ CREATE TABLE case_reed (
     CONSTRAINT PK_case_reed PRIMARY KEY (case_id, reed_id),
     CONSTRAINT FK_case_case_reed FOREIGN KEY (case_id) REFERENCES cases(case_id),
     CONSTRAINT FK_reed_case_reed FOREIGN KEY (reed_id) REFERENCES reeds(reed_id)
+);
+
+-- Weather Table
+CREATE TABLE weather (
+    weather_id SERIAL,
+    date TIMESTAMP PRIMARY KEY,
+    temperature_fahrenheit int,
+    temperature_celsius int,
+    humidity int,
+    air_pressure int
 );
 
 COMMIT TRANSACTION;
