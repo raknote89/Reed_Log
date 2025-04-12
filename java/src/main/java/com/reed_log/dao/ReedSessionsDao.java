@@ -1,30 +1,35 @@
 package com.reed_log.dao;
 
+import com.reed_log.model.ReedSessions;
+import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 import org.springframework.boot.web.servlet.server.Session;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ReedSessionsDao {
 
-    List<Session> getSessions(int reedId);
+    List<ReedSessions> getSessions(int reedId);
 
-    Session addSession(Session session);
+    ReedSessions addSession(ReedSessions session);
 
-    Session getIndividualSession(int session);
+    ReedSessions getIndividualSession(int sessionId);
 
-    Session setTimePlayed(int timePlayed);
+    ReedSessions setTimePlayed(int timePlayed);
 
-    Session setFahrenheit(int fahrenheit);
+   ReedSessions setTemperature(int temperature);
 
-    Session setCelsius(int celsius);
+    ReedSessions setHumidity(int humidity);
 
-    Session setHumidity(int humidity);
+    ReedSessions setRating(int rating);
 
-    Session setRating(int rating);
+    ReedSessions setResistance(int resistance);
 
-    Session setResistance(int resistance);
+    ReedSessions setNotes(String notes);
 
-    Session setNotes(String notes);
+    ReedSessions setReedId(int reedId);
 
-    Session setCity(String cityName);
+    ReedSessions setDatePlayed(Date date);
+
+
 }

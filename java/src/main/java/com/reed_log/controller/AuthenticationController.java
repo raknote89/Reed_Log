@@ -7,7 +7,6 @@ import com.reed_log.model.User;
 import jakarta.validation.Valid;
 
 import com.reed_log.exception.DaoException;
-import com.techelevator.model.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

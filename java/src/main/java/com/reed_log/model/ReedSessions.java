@@ -8,16 +8,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ReedSessions {
 
-    private int session;
+    private int sessionId;
+
+    private int reedId;
 
     private Date datePlayed;
 
     private int timePlayed;
 
-    private int fahrenheit;
-
-    private int celsius;
-
+    private int temperature;
+    
     private int humidity;
 
     private int rating;
@@ -28,12 +28,12 @@ public class ReedSessions {
 
     private String cityName;
 
-    public ReedSessions(int session, Date datePlayed, int timePlayed, int fahrenheit, int celsius, int humidity, int rating, int resistance, String notes, String cityName) {
-        this.session = session;
+    public ReedSessions(int sessionId, int reedId, Date datePlayed, int timePlayed, int temperature, int celsius, int humidity, int rating, int resistance, String notes, String cityName) {
+        this.sessionId = sessionId;
+        this.reedId = reedId;
         this.datePlayed = datePlayed;
         this.timePlayed = timePlayed;
-        this.fahrenheit = fahrenheit;
-        this.celsius = celsius;
+        this.temperature = temperature;
         this.humidity = humidity;
         this.rating = rating;
         this.resistance = resistance;
@@ -41,13 +41,21 @@ public class ReedSessions {
         this.cityName = cityName;
     }
 
-    public int getSession() {
-        return session;
+    public ReedSessions() {
+
     }
 
-    public void setSession(int session) {
-        this.session = session;
+    public int getSessionId() {
+        return sessionId;
     }
+
+    public void setSessionId(int sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    public int getReedId() {return reedId;}
+
+    public void setReedId(int reedId) {this.reedId = reedId;}
 
     public Date getDatePlayed() {
         return datePlayed;
@@ -65,21 +73,14 @@ public class ReedSessions {
         this.timePlayed = timePlayed;
     }
 
-    public int getFahrenheit() {
-        return fahrenheit;
+    public int getTemperature() {
+        return temperature;
     }
 
-    public void setFahrenheit(int fahrenheit) {
-        this.fahrenheit = fahrenheit;
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
     }
-
-    public int getCelsius() {
-        return celsius;
-    }
-
-    public void setCelsius(int celsius) {
-        this.celsius = celsius;
-    }
+    
 
     public int getHumidity() {
         return humidity;

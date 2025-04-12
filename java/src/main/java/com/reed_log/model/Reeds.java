@@ -39,4 +39,6 @@ public class Reeds {
         this.hardness = hardness;
         this.dateOpened = dateOpened;
     }
+
+    public Reeds(){}
 }

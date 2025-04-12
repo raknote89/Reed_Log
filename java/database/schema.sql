@@ -61,7 +61,8 @@ CREATE TABLE weather (
     temperature_fahrenheit int,
     temperature_celsius int,
     humidity int,
-    air_pressure int
+    air_pressure int,
+    city_name varchar(50)
 );
 
 COMMIT TRANSACTION;
