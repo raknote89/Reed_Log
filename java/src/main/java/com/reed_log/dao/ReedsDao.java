@@ -9,15 +9,17 @@ public interface ReedsDao {
 
     Reeds getReedById(int reedId);
 
-    Reeds getReedHardness(int reedId);
+    //Reeds getReedHardness(int reedId);
 
-    Reeds removeReed(int reedId);
+    int removeReed(int reedId);
 
-    Reeds setReedHardness(int reedId, double hardness);
+    Reeds addReed(Reeds reed);
 
-    Reeds setDateOpened(int reedId, Date dateOpened);
-
-    Reeds getDateOpenedById(int reedId);
+//    Reeds setReedHardness(int reedId, double hardness);
+//
+//    Reeds setDateOpened(int reedId, Date dateOpened);
+//
+//    Reeds getDateOpenedById(int reedId);
 
     List<Reeds> getReeds();
 
