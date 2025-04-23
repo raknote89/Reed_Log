@@ -51,17 +51,27 @@ public class JdbcReedsDao implements ReedsDao{
     @Override
     public int removeReed(int reedId) {
         Reeds target = null;
-        for (Reeds reed :  reeds){
-            if (reed.getReedId() == reedId) {
-                target = reed;
+
+        String sql = "DELETE FROM reeds WHERE reed_id = ?;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reedId);
+            for (Reeds reed :  reeds){
+                if (reed.getReedId() == reedId) {
+                    target = reed;
+                }
             }
+            if (target != null) {
+                reeds.remove(target);
+                return 1;
+            } else {
+                return 0;
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
         }
-        if (target != null) {
-            reeds.remove(target);
-            return 1;
-        } else {
-            return 0;
-        }
+
+
+        
 
     }
 
@@ -74,7 +84,7 @@ public class JdbcReedsDao implements ReedsDao{
 
     @Override
     public Reeds setReedHardness(int reedId, double hardness) {
-
+        Reeds reed = new Reeds();
         String sql = "UPDATE reeds SET strength = ? WHERE reed_id=?;";
 
 
@@ -86,7 +96,6 @@ public class JdbcReedsDao implements ReedsDao{
             String selectSql = "SELECT * FROM reeds WHERE reed_id = ?;";
             SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql, reedId);
             if(results.next())  {
-                Reeds reed = new Reeds();
                 reed.setReedId(results.getInt("reed_id"));
                 reed.setHardness(results.getDouble("strength"));
                 return reed;
@@ -97,17 +106,45 @@ public class JdbcReedsDao implements ReedsDao{
             throw new DaoException("Error inserting reed strength", e);
         }
 
+        return reed;
+
     }
-//
-//    @Override
-//    public Reeds setDateOpened(int reedId, Date dateOpened) {
-//        return null;
-//    }
-//
-//    @Override
-//    public Reeds getDateOpenedById(int reedId) {
-//        return null;
-//    }
+
+    @Override
+    public Reeds setDateOpened(int reedId, Date dateOpened) {
+        //set new reed
+        //set reed to entered reedId
+        //set date opened for reed
+        Reeds reed = new Reeds();
+        String sql = "UPDATE reeds SET date_opened = ? WHERE reed_id = ?;";
+
+        try{
+            int rowsAffected = jdbcTemplate.update(sql, dateOpened, reedId);
+            if(rowsAffected == 0) {
+                return null;
+            }
+            String selectSql = "SELECT * FROM reeds WHERE reed_id = ?;";
+            SqlRowSet results = jdbcTemplate.queryForRowSet(selectSql, reedId);
+            if(results.next())  {
+                reed.setReedId(results.getInt("reed_id"));
+                reed.setHardness(results.getDouble("date_opened"));
+                return reed;
+            }
+
+        }catch (DataAccessException e) {
+            System.err.println("Error inserting date opened" + e.getMessage());
+            throw new DaoException("Error inserting date opened", e);
+        }
+
+        return reed;
+
+
+    }
+
+    @Override
+    public Reeds getDateOpenedById(int reedId) {
+        return null;
+    }
 
     @Override
     public List<Reeds> getReeds() {
